@@ -1,7 +1,7 @@
 package com.example
 
 import com.example.customer.customerModule
-import com.example.customer.customerRoutes
+import com.example.customer.customerRouting
 import com.example.plugins.configureSerialization
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
@@ -16,6 +16,6 @@ fun main() {
         }
 
         configureSerialization()
-        customerRoutes()
+        customerRouting()
     }.start(wait = true)
 }
