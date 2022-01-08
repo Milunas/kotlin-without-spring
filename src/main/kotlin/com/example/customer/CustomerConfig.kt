@@ -1,7 +1,9 @@
 package com.example.customer
 
-import io.ktor.server.application.*
+import org.koin.dsl.module
 
-fun Application.customerModule() {
-    customerRoutes()
+/** The place where we declare beans */
+fun customerModule() = module {
+    single { CustomerRepository() }
+    single { CustomerService(get()) }
 }

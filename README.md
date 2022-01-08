@@ -22,7 +22,7 @@ Instruction how to easily start with Ktor: [Link](https://ktor.io/docs/intellij-
    plugin: [Link](https://plugins.jetbrains.com/plugin/16008-ktor?_ga=2.119157257.1475561129.1641494389-2002089144.1641494389&_gl=1*10ouy88*_ga*MjAwMjA4OTE0NC4xNjQxNDk0Mzg5*_ga_VCMCSM1ZZ7*MTY0MTU3MDgyMS4yLjEuMTY0MTU3MzEwOC4w)
 
 2) Create new project in IntelliJ
-   ![img.png](img.png)
+   ![img.png](doc/img.png)
 
 You can also manipulate existing gradle (or maven) configuration
 https://ktor.io/docs/gradle.html#create-new-gradle-project
@@ -32,3 +32,14 @@ Routing is organized in a tree with a recursive matching system that is capable 
 The Tree is built with nodes that contain selector and optional handler. 
 Selectors are used to pick a route based on request.
 Source: https://ktor.io/docs/resolution-algorithms.html
+
+### Dependency Injection
+Dependency injection is handled differently in functional languages, but due to Spring habits we don't want to
+experience shock therapy. Therefore, we will use the Koin library to build something "Spring-ish".
+
+### Koin
+When I tried to follow basic Koin instruction I ran into a problem with Koin quickstart instruction.
+I couldn't use `inject` as in documentation:
+https://stackoverflow.com/questions/70461172/ktor-with-koin-di-cant-inject-missing-clazz
+
+![img_1.png](doc/img_1.png)
