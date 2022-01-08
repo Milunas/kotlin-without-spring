@@ -38,7 +38,7 @@ Dependency injection is handled differently in functional languages, but due to 
 experience shock therapy. Therefore, we will use the Koin library to build something "Spring-ish".
 
 ### Koin
-When I tried to follow basic Koin instruction I ran into a problem with Koin quickstart instruction.
+When I tried to follow [basic Koin instruction](https://insert-koin.io/docs/quickstart/ktor) I ran into a problem while implementing quickstart section.
 I couldn't use `inject` as in documentation:
 https://stackoverflow.com/questions/70461172/ktor-with-koin-di-cant-inject-missing-clazz
 
