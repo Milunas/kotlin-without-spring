@@ -37,9 +37,7 @@ Source: https://ktor.io/docs/resolution-algorithms.html
 Dependency injection is handled differently in functional languages, but due to Spring habits we don't want to
 experience shock therapy. Therefore, we will use the Koin library to build something "Spring-ish".
 
-### Koin
-When I tried to follow [basic Koin instruction](https://insert-koin.io/docs/quickstart/ktor) I ran into a problem while implementing quickstart section.
-I couldn't use `inject` as in documentation:
-https://stackoverflow.com/questions/70461172/ktor-with-koin-di-cant-inject-missing-clazz
+### E2E Test
 
-![img_1.png](doc/img_1.png)
+
+### GitHub actions

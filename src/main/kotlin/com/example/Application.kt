@@ -3,19 +3,19 @@ package com.example
 import com.example.customer.customerModule
 import com.example.customer.customerRouting
 import com.example.plugins.configureSerialization
-import io.ktor.server.engine.*
+import io.ktor.application.*
 import io.ktor.server.netty.*
 
 import org.koin.core.context.startKoin
 
-fun main() {
-    embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
+fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-        startKoin {
-            modules(customerModule())
-        }
+fun Application.module(testing: Boolean = false) {
 
-        configureSerialization()
-        customerRouting()
-    }.start(wait = true)
+    startKoin {
+        modules(customerModule())
+    }
+
+    configureSerialization()
+    customerRouting()
 }
