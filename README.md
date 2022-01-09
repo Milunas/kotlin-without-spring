@@ -48,7 +48,7 @@ Ktor providing `withTestApplication`
 ```kotlin
     @Test
     fun createAndListCustomer() = withTestApplication(Application::module) {
-        ..
+        //..
     }
 ```
 
@@ -83,3 +83,10 @@ test quite readable
 ### GitHub actions
 
 You can use GitHub actions for CI purpose just like here: [code](.github/workflows/test.yaml)
+
+### KMongo
+docker-compose -f infrastructure/docker-compose.yaml up -d
+
+https://litote.org/kmongo/quick-start/#object-mapping-engine
+
+### Testing KMongo
