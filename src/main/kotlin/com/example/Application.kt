@@ -7,15 +7,19 @@ import io.ktor.application.*
 import io.ktor.server.netty.*
 
 import org.koin.core.context.startKoin
+import org.koin.core.module.Module
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-fun Application.module(testing: Boolean = false) {
+val appModules = listOf(
+    customerModule(),
+)
 
-    startKoin {
-        modules(customerModule())
-    }
-
+fun Application.module(
+    testing: Boolean = false,
+    modules: List<Module> = appModules,
+) {
+    startKoin { modules(modules) }
     configureSerialization()
     customerRouting()
 }
