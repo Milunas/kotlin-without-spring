@@ -14,7 +14,6 @@ class CustomerTest {
 
     @Test
     fun createAndListCustomer() = withTestApplication(Application::module) {
-
         // given
         val newCustomer = Customer("1", "l", "m", "lm@com")
 
