@@ -1,7 +1,7 @@
 ### Goal
 
 Bored with the constant use of spring in commercial projects, \
-I decided to investigate the use of a basin with an alternative solution.
+I decided to investigate the use of a alternative tech stack.
 
 Requirements for alternative:
 
