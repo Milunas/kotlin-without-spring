@@ -1,7 +1,7 @@
 ### Goal
 
 Bored with the constant use of spring in commercial projects, \
-I decided to investigate the use of a alternative tech stack.
+I decided to investigate the use of an alternative tech stack.
 
 Requirements for alternative:
 
@@ -47,7 +47,7 @@ Ktor providing `withTestApplication`
 
 ```kotlin
     @Test
-    fun createAndListCustomer() = withTestApplication(Application::module) {
+fun createAndListCustomer() = withTestApplication(Application::module) {
         //..
     }
 ```
@@ -67,17 +67,17 @@ test quite readable
 
 ```kotlin
     // given
-    val newCustomer = Customer("1", "l", "m", "lm@com")
+val newCustomer = Customer("1", "l", "m", "lm@com")
 
-    // when
-    post("/customer", encode(newCustomer)).invoke(this)
+// when
+post("/customer", encode(newCustomer)).invoke(this)
 
-    // and
-    val getCustomers = get("/customer").invoke(this)
-    val customers = decode<List<Customer>>(getCustomers)
+// and
+val getCustomers = get("/customer").invoke(this)
+val customers = decode<List<Customer>>(getCustomers)
 
-    // then
-    assertEquals(customers.size, 1)
+// then
+assertEquals(customers.size, 1)
 ```
 
 ### GitHub actions
@@ -85,8 +85,42 @@ test quite readable
 You can use GitHub actions for CI purpose just like here: [code](.github/workflows/test.yaml)
 
 ### KMongo
-docker-compose -f infrastructure/docker-compose.yaml up -d
 
-https://litote.org/kmongo/quick-start/#object-mapping-engine
+Setup mongo locally with docker-compose \
+`docker-compose -f infrastructure/docker-compose.yaml up -d`
+
+I'm using kotlinx serialization so stay that way also with Mongo \
+https://litote.org/kmongo/quick-start/#with-kotlinxserialization
 
 ### Testing KMongo
+
+Different from Spring for testing application with embedded database \
+you need to implement code for flapdoodle configuration
+
+example: https://github.com/Litote/kmongo/tree/master/kmongo-flapdoodle
+
+So I decided to use a InMemory database for testing purpose
+```kotlin
+class CustomerRepositoryInMemory : CustomerRepository {
+    private val customerStorage = mutableListOf<Customer>()
+
+    override fun findAll(): List<Customer> = customerStorage
+    override fun save(customer: Customer) = customerStorage.add(customer)
+    override fun findById(id: String): Customer? = customerStorage.find { it.id == id }
+    override fun deleteById(id: String): Boolean = customerStorage.removeIf { it.id == id }
+}
+```
+
+It's easy to create Koin Customer module for testing purpose with this InMemory database
+
+```kotlin
+ private val customerModule = listOf(org.koin.dsl.module {
+        single { CustomerRepositoryInMemory() }
+        single { CustomerService(get()) }
+    })
+```
+
+Use this with Ktor test
+```kotlin
+withTestApplication({ module(true, customerModule) }) {}
+```
