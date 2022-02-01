@@ -2,6 +2,7 @@ package com.example
 
 import com.example.customer.customerModule
 import com.example.customer.customerRouting
+import com.example.plugins.configureAuth
 import com.example.plugins.configureSerialization
 import io.ktor.application.*
 import io.ktor.server.netty.*
@@ -16,10 +17,11 @@ val appModules = listOf(
 )
 
 fun Application.module(
-    testing: Boolean = false,
     modules: List<Module> = appModules,
 ) {
+    val secret = environment.config.property("jwt.secret").getString()
     startKoin { modules(modules) }
     configureSerialization()
+    configureAuth(secret)
     customerRouting()
 }

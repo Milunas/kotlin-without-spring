@@ -1,5 +1,6 @@
 POST http://127.0.0.1:8080/customer
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5uYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.NuYB70HCz4eUV6v-a2PWfHJJT_ZPQJk2tvOTt5uFZM8
 
 {
   "id": "100",
@@ -11,15 +12,20 @@ Content-Type: application/json
 ###
 GET http://127.0.0.1:8080/customer
 Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5uYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.NuYB70HCz4eUV6v-a2PWfHJJT_ZPQJk2tvOTt5uFZM8
 
 ###
 GET http://127.0.0.1:8080/customer/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5uYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.NuYB70HCz4eUV6v-a2PWfHJJT_ZPQJk2tvOTt5uFZM8
 
 ###
 GET http://127.0.0.1:8080/customer/500
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5uYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.NuYB70HCz4eUV6v-a2PWfHJJT_ZPQJk2tvOTt5uFZM8
 
 ###
 DELETE http://127.0.0.1:8080/customer/100
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5uYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.NuYB70HCz4eUV6v-a2PWfHJJT_ZPQJk2tvOTt5uFZM8
 
 ###
 DELETE http://127.0.0.1:8080/customer/500
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5uYW1lIjoiSm9obiBEb2UiLCJpYXQiOjE1MTYyMzkwMjJ9.NuYB70HCz4eUV6v-a2PWfHJJT_ZPQJk2tvOTt5uFZM8

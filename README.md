@@ -7,9 +7,11 @@ Requirements for alternative:
 
 * Easy to implement endpoints & test HTTP layer
 * Way to inject dependencies into classes
-* Possibility of working with WebSockets
+* Alternative for Spring repositories with easy saving
 * Easy to implement JWT authorization
-* Alternative for Spring repositories with easy saving & pagination
+* Possibility of working with WebSockets
+* Handling environment variables  
+* Possibility of run on container
 
 ### Alternative stack
 
@@ -124,3 +126,46 @@ Use this with Ktor test
 ```kotlin
 withTestApplication({ module(true, customerModule) }) {}
 ```
+
+### JWT
+I created new extension function for application called `configureAuth`
+
+This function installing new Authentication.Feature where I can define new jwt configuration, named somehow.
+By this name you can then use proper auth configurations in routing:
+
+```kotlin
+ route("/customer") {
+        authenticate("auth-jwt") {
+```
+
+If you are using HOCON file (more about that here: https://ktor.io/docs/configurations.html#hocon-file) \
+you can easily add new environment variables:
+
+_src/main/resources/application.conf_
+```
+jwt {
+    secret = "secret"
+}
+```
+
+This JWT secret is fetched in `Application.module()` from properties like this: \
+`    
+val secret = environment.config.property("jwt.secret").getString()
+`
+
+
+Unfortunately I couldn't inject properties into tests as was suggested here: https://ktor.io/docs/testing.html#hocon
+```kotlin
+    private val testEnv: ApplicationEngineEnvironment  = createTestEnvironment {
+        config = HoconApplicationConfig(ConfigFactory.load("application.conf"))
+    }
+    
+    @Test
+    fun createAndListCustomer() = withTestApplication(
+        { module(customerModule) },
+        { testEnv }
+    )
+```
+
+I see easy workaround for that - I can just pass test properties somehow into  application module,
+but better first to search deeper for proper way of doing it.
