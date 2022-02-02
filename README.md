@@ -169,3 +169,16 @@ Unfortunately I couldn't inject properties into tests as was suggested here: htt
 
 I see easy workaround for that - I can just pass test properties somehow into  application module,
 but better first to search deeper for proper way of doing it.
+
+### Containerizing
+I decided to configure docker different from what is suggested here: https://ktor.io/docs/docker.html
+
+`./gradlew installDist`
+
+`docker build --tag my-application -f deployment/Dockerfile .`
+
+`docker run -p 8080:8080 my-application`
+
+
+### Pros
+Application started in 0.394 seconds
