@@ -6,21 +6,18 @@ import com.example.plugins.configureAuth
 import com.example.plugins.configureSerialization
 import io.ktor.application.*
 import io.ktor.server.netty.*
-
 import org.koin.core.context.startKoin
-import org.koin.core.module.Module
 
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
-val appModules = listOf(
-    customerModule(),
-)
-
-fun Application.module(
-    modules: List<Module> = appModules,
-) {
+fun Application.module() {
     val secret = environment.config.property("jwt.secret").getString()
-    startKoin { modules(modules) }
+    val dbPort = environment.config.property("database.port").getString().toInt()
+    startKoin { modules(
+        listOf(
+            customerModule(dbPort)
+        )
+    ) }
     configureSerialization()
     configureAuth(secret)
     customerRouting()
